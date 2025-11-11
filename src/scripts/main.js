@@ -24,3 +24,4 @@ function sortBySalary() {
 }
 
 sortBySalary();
+getEmployees();
