@@ -6,7 +6,7 @@ function toSalary(value) {
   return Number(value.slice(1).split(',').join(''));
 }
 
-function getEmployees(list) {
+function getEmployees(list) { // eslint-disable-line
   const employees = [...list.querySelectorAll('li')].map((a) => ({
     name: a.textContent.trim(),
     position: a.dataset.position,
@@ -17,13 +17,11 @@ function getEmployees(list) {
   return employees;
 }
 
-function sortList(list) {
-  const items = [...document.querySelectorAll('li')];
+function sortList(list) { // eslint-disable-line
+  const items = [...list.querySelectorAll('li')];
 
   items.sort(
-    (a, b) =>
-      Number(b.dataset.salary.slice(1).split(',').join('')) -
-      Number(a.dataset.salary.slice(1).split(',').join('')),
+    (a, b) => toSalary(b.dataset.salary) - toSalary(a.dataset.salary) // eslint-disable-line
   );
   list.append(...items);
 }
