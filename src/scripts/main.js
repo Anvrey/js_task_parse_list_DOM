@@ -1,18 +1,23 @@
 'use strict';
 
-function getEmployees() {
-  const employees = [...document.querySelectorAll('li')].map((a) => ({
+const list = document.querySelector('ul');
+
+function toSalary(value) {
+  return Number(value.slice(1).split(',').join(''));
+}
+
+function getEmployees(list) {
+  const employees = [...list.querySelectorAll('li')].map((a) => ({
     name: a.textContent.trim(),
     position: a.dataset.position,
-    salary: Number(a.dataset.salary.slice(1).split(',').join('')),
+    salary: toSalary(a.dataset.salary),
     age: Number(a.dataset.age),
   }));
 
   return employees;
 }
 
-function sortBySalary() {
-  const list = document.querySelector('ul');
+function sortList(list) {
   const items = [...document.querySelectorAll('li')];
 
   items.sort(
@@ -23,5 +28,5 @@ function sortBySalary() {
   list.append(...items);
 }
 
-sortBySalary();
-getEmployees();
+sortList(list);
+getEmployees(list);
